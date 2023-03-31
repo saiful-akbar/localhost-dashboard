@@ -1,0 +1,11 @@
+# Folder
+/node_modules
+/vendor
+/.vscode
+
+# File
+.env
+.env.backup
+.env.production
+npm-debug.log
+yarn-error.log

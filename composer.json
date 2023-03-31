@@ -1,0 +1,15 @@
+{
+    "name": "saiful-akbar/localhost-dashboard",
+    "description": "Dashboard for localhost",
+    "autoload": {
+        "files": ["helpers.php"],
+        "psr-4": {}
+    },
+    "authors": [
+        {
+            "name": "saiful-akbar",
+            "email": "saifulakbar.dev@gmail.com"
+        }
+    ],
+    "require": {}
+}
