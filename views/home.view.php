@@ -61,7 +61,7 @@ if (!empty($_GET['search'])) {
 
 	<!-- Title -->
 	<title>Localhost : Dashboard</title>
-	
+
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?= url('assets/css/bootstrap.min.css'); ?>">
 	<link rel="stylesheet" href="<?= url('assets/css/bootstrap-icons.css'); ?>">
@@ -76,6 +76,13 @@ if (!empty($_GET['search'])) {
 </head>
 
 <body>
+	<script>
+		const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		const html = document.querySelector('html');
+
+		html.dataset.bsTheme = theme;
+	</script>
+
 	<div class="container py-5">
 		<h1>Dashboard</h1>
 
@@ -84,7 +91,7 @@ if (!empty($_GET['search'])) {
 		<!-- Button reload & form search -->
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-4 col-sm-12 mb-md-4 mb-3">
-				<button type="button" class="btn btn-dark bg-gradient" id="btnReload">
+				<button type="button" class="btn btn-secondary bg-gradient" id="btnReload" data-bs-theme="dark">
 					<i class="bi bi-arrow-clockwise me-1"></i>
 					<span>Reload</span>
 				</button>
@@ -92,22 +99,16 @@ if (!empty($_GET['search'])) {
 
 			<div class="col-lg-6 col-md-8 col-sm-12 mb-4">
 				<form action="<?= url('/'); ?>" autocomplete="off">
-					<?php if (isset($_GET['route'])): ?>
+					<?php if (isset($_GET['route'])) : ?>
 						<input type="hidden" name="route" value="home" />
 					<?php endif ?>
 
 					<div class="input-group">
-					 	<input
-					 		type="search"
-					 		name="search"
-					 		value="<?= $_GET['search'] ?? ''; ?>"
-					 		placeholder="Search by application..."
-					 		class="form-control"
-					 	/>
-					 	
-					 	<button type="submit" class="btn btn-dark bg-gradient">
-					 		<i class="bi bi-search"></i>
-					 	</button>
+						<input type="search" name="search" value="<?= $_GET['search'] ?? ''; ?>" placeholder="Search by application..." class="form-control" <?php if (!empty($_GET['search'])) : ?> autofocus <?php endif; ?> />
+
+						<button type="submit" class="btn btn-secondary bg-gradient" data-bs-theme="dark">
+							<i class="bi bi-search"></i>
+						</button>
 					</div>
 				</form>
 			</div>
@@ -123,7 +124,7 @@ if (!empty($_GET['search'])) {
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($directories as $directory): ?>
+					<?php foreach ($directories as $directory) : ?>
 						<tr>
 							<td><?= get_name($directory); ?></td>
 							<td>
