@@ -76,7 +76,7 @@ if (!empty($_GET['search'])) {
 	</style>
 </head>
 
-<body class="bg-light">
+<body>
 	<script>
 		const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		const html = document.querySelector('html');
