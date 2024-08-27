@@ -76,7 +76,7 @@ if (!empty($_GET['search'])) {
 	</style>
 </head>
 
-<body class="bg-light">
+<body>
 	<script>
 		const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		const html = document.querySelector('html');
@@ -85,7 +85,7 @@ if (!empty($_GET['search'])) {
 	</script>
 
 	<div class="container py-5">
-		<h1>Localhost Dashboard</h1>
+		<h1>Dashboard</h1>
 
 		<hr class="mb-5">
 
@@ -110,14 +110,9 @@ if (!empty($_GET['search'])) {
 							name="search"
 							value="<?= $_GET['search'] ?? ''; ?>"
 							placeholder="Search by application name..."
-							class="form-control"
-						/>
+							class="form-control" />
 
-						<button
-							type="submit"
-							class="btn btn-secondary bg-gradient"
-							data-bs-theme="dark"
-						>
+						<button type="submit" class="btn btn-secondary bg-gradient" data-bs-theme="dark">
 							<i class="bi bi-search"></i>
 						</button>
 					</div>
@@ -126,29 +121,27 @@ if (!empty($_GET['search'])) {
 		</div>
 
 		<!-- Table -->
-		<div class="card shadow-sm">
-			<div class="card-body table-responsive">
-				<table class="table table-hover">
-					<thead>
+		<div class="table-responsive">
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>App Name</th>
+						<th>Url</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($directories as $directory) : ?>
 						<tr>
-							<th>Application Name</th>
-							<th>URL</th>
+							<td><?= get_name($directory); ?></td>
+							<td>
+								<a href="<?= to($directory); ?>" target="_blank">
+									<?= to($directory); ?>
+								</a>
+							</td>
 						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($directories as $directory) : ?>
-							<tr>
-								<td><?= get_name($directory); ?></td>
-								<td>
-									<a href="<?= to($directory); ?>" target="_blank">
-										<?= to($directory); ?>
-									</a>
-								</td>
-							</tr>
-						<?php endforeach ?>
-					</tbody>
-				</table>
-			</div>
+					<?php endforeach ?>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
@@ -160,7 +153,7 @@ if (!empty($_GET['search'])) {
 		document.querySelector('#btnReload').addEventListener('click', (e) => {
 			const url = document.querySelector('meta[name=base-url]').content;
 			const params = window.location.search;
-			
+
 			window.location.href = url + params;
 		});
 	</script>
