@@ -17,7 +17,7 @@ array_push($scan_dir, 'phpmyadmin');
  * 
  * @var array
  */
-$remove = ['.', '..', 'index.php', 'dashboard'];
+$remove = ['.', '..', 'index.php', 'dashboard', 'desktop.ini'];
 
 /**
  * Membersihkan data array hasil scan.
@@ -134,7 +134,7 @@ if (!empty($_GET['search'])) {
 						<tr>
 							<td><?= get_name($directory); ?></td>
 							<td>
-								<a href="<?= to($directory); ?>" target="_blank">
+								<a href="<?= to($directory); ?>">
 									<?= to($directory); ?>
 								</a>
 							</td>
